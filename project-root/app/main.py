@@ -1,18 +1,13 @@
-from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import JSONResponse
-import shutil
-from model.model import predict_image
+from fastapi import FastAPI, UploadFile, File
+from app.model import predict
+from PIL import Image
+import io
 
 app = FastAPI()
 
-@app.post("/predict/")
-async def predict(file: UploadFile = File(...)):
-    with open(f"temp_image.png", "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-    
-    label, processed_image_url = predict_image("temp_image.png")
-
-    return JSONResponse(content={
-        "label": label,
-        "processed_image_url": processed_image_url
-    })
+@app.post("/predict")
+async def predict_image(file: UploadFile = File(...)):
+    contents = await file.read()
+    image = Image.open(io.BytesIO(contents))
+    result = predict(image)
+    return {"result": result}
