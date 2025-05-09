@@ -1,0 +1,6 @@
+<key>NSCameraUsageDescription</key>
+<string>We need access to the camera for pest identification.</string>
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>We need access to your location to submit pest reports.</string>
+<key>FirebaseAppDelegateProxyEnabled</key>
+<false/>

@@ -1,0 +1,35 @@
+name: pest_management_app
+description: A pest management app with AI identification and reporting
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.18.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  google_maps_flutter: ^2.12.1
+  geolocator: ^14.0.0
+  image_picker: ^1.1.2
+  http: ^1.4.0
+  firebase_messaging: ^15.2.5
+  flutter_local_notifications: ^19.1.0
+  intl: ^0.19.0
+  firebase_core: ^3.13.0
+  lucide_icons: ^0.257.0
+  camera: ^0.10.5+9
+
+flutter:
+  assets:
+    - assets/leaf.png
+    - assets/images/ipmarem.jpg
+    - assets/images/jinditmul.webp
+    - assets/images/nogyun.jpg
+    - assets/images/chongchae.jpg
+  fonts:
+    - family: NotoSansKR
+      fonts:
+        - asset: assets/fonts/NotoSansKR-Regular.ttf

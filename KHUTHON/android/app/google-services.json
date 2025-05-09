@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "665317791482",
+    "project_id": "khuthon-a3fe9",
+    "storage_bucket": "khuthon-a3fe9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665317791482:android:349e29920533fbbc8c1b43",
+        "android_client_info": {
+          "package_name": "com.example.khuthon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYIYTUVPHNDDXHjE_st-tsJU7o01Xdv7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
