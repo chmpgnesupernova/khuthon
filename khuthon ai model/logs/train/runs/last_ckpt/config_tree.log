@@ -1,0 +1,104 @@
+CONFIG
+├── data
+│   └── _target_: pest_rec.data.ip102_datamodule.IP102DataModule                                    
+│       data_dir: /Users/shani03/large-scale-pest-recognition/data/ip102_v1.1/                      
+│       train_dir: /Users/shani03/large-scale-pest-recognition/data/ip102_v1.1/images/train/        
+│       val_dir: /Users/shani03/large-scale-pest-recognition/data/ip102_v1.1/images/val/            
+│       test_dir: /Users/shani03/large-scale-pest-recognition/data/ip102_v1.1/images/test/          
+│       batch_size: 32                                                                              
+│       num_workers: 12                                                                             
+│       pin_memory: false                                                                           
+│                                                                                                   
+├── model
+│   └── _target_: pest_rec.models.insect_pest_module.InsectPestLitModule                            
+│       optimizer:                                                                                  
+│         _target_: torch.optim.Adam                                                                
+│         _partial_: true                                                                           
+│         lr: 0.001                                                                                 
+│         weight_decay: 0.0                                                                         
+│       scheduler:                                                                                  
+│         _target_: torch.optim.lr_scheduler.ReduceLROnPlateau                                      
+│         _partial_: true                                                                           
+│         mode: min                                                                                 
+│         factor: 0.1                                                                               
+│         patience: 5                                                                               
+│       net:                                                                                        
+│         _target_: pest_rec.models.components.insect_pest_net.InsectPestClassifier                 
+│         input_size: 1280                                                                          
+│         linear1_size: 1024                                                                        
+│         linear2_size: 512                                                                         
+│         linear3_size: 256                                                                         
+│         output_size: 102                                                                          
+│         dropout_size: 0.2                                                                         
+│         freeze: false                                                                             
+│                                                                                                   
+├── callbacks
+│   └── model_checkpoint:                                                                           
+│         _target_: lightning.pytorch.callbacks.ModelCheckpoint                                     
+│         dirpath: /Users/shani03/large-scale-pest-recognition/logs/train/runs/2025-05-10_01-55-02/c
+│         filename: epoch_{epoch:03d}                                                               
+│         monitor: val/acc                                                                          
+│         verbose: false                                                                            
+│         save_last: true                                                                           
+│         save_top_k: 1                                                                             
+│         mode: max                                                                                 
+│         auto_insert_metric_name: false                                                            
+│         save_weights_only: false                                                                  
+│         every_n_train_steps: null                                                                 
+│         train_time_interval: null                                                                 
+│         every_n_epochs: null                                                                      
+│         save_on_train_epoch_end: null                                                             
+│       early_stopping:                                                                             
+│         _target_: lightning.pytorch.callbacks.EarlyStopping                                       
+│         monitor: val/acc                                                                          
+│         min_delta: 0.0                                                                            
+│         patience: 100                                                                             
+│         verbose: false                                                                            
+│         mode: max                                                                                 
+│         strict: true                                                                              
+│         check_finite: true                                                                        
+│         stopping_threshold: null                                                                  
+│         divergence_threshold: null                                                                
+│         check_on_train_epoch_end: null                                                            
+│       model_summary:                                                                              
+│         _target_: lightning.pytorch.callbacks.RichModelSummary                                    
+│         max_depth: -1                                                                             
+│       rich_progress_bar:                                                                          
+│         _target_: lightning.pytorch.callbacks.RichProgressBar                                     
+│                                                                                                   
+├── trainer
+│   └── _target_: lightning.pytorch.trainer.Trainer                                                 
+│       default_root_dir: /Users/shani03/large-scale-pest-recognition/logs/train/runs/2025-05-10_01-
+│       min_epochs: 1                                                                               
+│       max_epochs: 132                                                                             
+│       accelerator: mps                                                                            
+│       devices: 1                                                                                  
+│       check_val_every_n_epoch: 1                                                                  
+│       deterministic: false                                                                        
+│                                                                                                   
+├── paths
+│   └── root_dir: /Users/shani03/large-scale-pest-recognition                                       
+│       data_dir: /Users/shani03/large-scale-pest-recognition/data/                                 
+│       log_dir: /Users/shani03/large-scale-pest-recognition/logs/                                  
+│       output_dir: /Users/shani03/large-scale-pest-recognition/logs/train/runs/2025-05-10_01-55-02 
+│       work_dir: /Users/shani03/large-scale-pest-recognition                                       
+│                                                                                                   
+├── extras
+│   └── ignore_warnings: false                                                                      
+│       enforce_tags: true                                                                          
+│       print_config: true                                                                          
+│                                                                                                   
+├── task_name
+│   └── train                                                                                       
+├── tags
+│   └── ['dev']                                                                                     
+├── train
+│   └── True                                                                                        
+├── test
+│   └── True                                                                                        
+├── compile
+│   └── False                                                                                       
+├── ckpt_path
+│   └── /Users/shani03/large-scale-pest-recognition/logs/train/runs/2025-05-09_23-15-29/checkpoints/
+└── seed
+    └── None                                                                                        
